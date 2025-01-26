@@ -57,3 +57,19 @@ text-overflow: ellipsis; /_ 溢出显示省略号 _/<br>
 1、内联样式表：适合单个元素快速调整样式<br>
 2、内部样式表：适合单一页面样式管理<br>
 3、外部样式表：适合网站整体样式统一管理，尤其适合大型项目
+
+#### 如何实现一个元素的水平垂直居中？
+
+1、
+{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+2、
+{
+display: flex;
+justify-content: center;
+align-items: center;
+}
