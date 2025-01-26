@@ -33,3 +33,21 @@ title：为元素提供额外的信息，通常是鼠标悬停时显示的提示
 
 \_self：打开链接时，内容会在同一个浏览器窗口或标签页中加载。<br>
 \_blank：打开链接时，会在一个新的浏览器窗口或标签页中加载目标页面。
+
+#### meta viewport 是做什么的，怎么写?
+
+meta viewport 是一个 HTML 元素，用于控制网页在移动设备上的显示和缩放行为。它通过设置 viewport 元素的属性，告诉浏览器如何调整页面的尺寸和缩放，以适应不同屏幕大小和分辨率的设备<br>
+`<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />`
+
+#### 你用过哪些 meta 标签属性?
+
+1、设置网页字符编码<br>
+`<meta charset="UTF-8">`<br>
+2、控制视口<br>
+`<meta name="viewport" content="width=device-width, initial-scale=1.0">`<br>
+3、网站描述<br>
+`<meta name="description" content="这是一个提供高质量内容的网站">`<br>
+4、网站关键词<br>
+`<meta name="keywords" content="HTML, CSS, JavaScript, 开发, 教程">`<br>
+5、页面刷新或重定向<br>
+`<meta http-equiv="refresh" content="5;url=https://example.com">`
