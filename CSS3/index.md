@@ -60,16 +60,16 @@ text-overflow: ellipsis; /_ 溢出显示省略号 _/<br>
 
 #### 如何实现一个元素的水平垂直居中？
 
-1、
-{
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-}
-2、
-{
-display: flex;
-justify-content: center;
-align-items: center;
+1、<br>
+{<br>
+position: absolute;<br>
+top: 50%;<br>
+left: 50%;<br>
+transform: translate(-50%, -50%);<br>
+}<br>
+2、<br>
+{<br>
+display: flex;<br>
+justify-content: center;<br>
+align-items: center;<br>
 }
