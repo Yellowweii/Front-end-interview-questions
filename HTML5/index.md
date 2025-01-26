@@ -51,3 +51,8 @@ meta viewport 是一个 HTML 元素，用于控制网页在移动设备上的显
 `<meta name="keywords" content="HTML, CSS, JavaScript, 开发, 教程">`<br>
 5、页面刷新或重定向<br>
 `<meta http-equiv="refresh" content="5;url=https://example.com">`
+
+#### Canvas 和 SVG 有什么区别？
+
+Canvas 的绘图是使用 JavaScript 直接在渲染上下文（2D 或 3D）上动态绘制完成的，放大会失真，缩小可能模糊；<br>
+SVG 使用 XML 描述图形，可以通过 DOM 操作和样式表（CSS）动态修改；SVG 是矢量图形，无论放大或缩小，图像都不会失真；可以为 SVG 图形添加事件（如点击、悬停）。
