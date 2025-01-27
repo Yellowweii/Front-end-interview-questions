@@ -73,3 +73,10 @@ display: flex;<br>
 justify-content: center;<br>
 align-items: center;<br>
 }
+
+#### flex：1 的含义？
+
+flex: 1 等价于 flex-grow: 1，flex-shrink: 1，flex-basis: 0<br>
+flex-grow: 1 表示当有剩余空间时，子元素可以按比例“扩展”来占用父容器的剩余空间<br>
+flex-shrink: 1 表示当父容器的空间不足时，子元素可以按比例“缩小”<br>
+flex-basis: 0 表示子元素的初始大小，默认由子元素自身的大小决定
