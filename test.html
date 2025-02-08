@@ -1,18 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script>
-      function test() {
-        console.log("test");
-      }
-      test();
-    </script>
   </head>
   <body>
     <div title="hello">Hello World!</div>
     <iframe src="https://hw.yellowwei.cn" width="600" height="400"></iframe>
+    <div id="timer">0</div>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+    <ol>
+      <li>ol 1</li>
+      <li>ol 2</li>
+      <li>ol 3</li>
+      <li>ol 4</li>
+      <li>ol 5</li>
+    </ol>
+    <!-- <script>
+      var lis = document.querySelectorAll("ul li");
+      console.log(lis);
+      console.log(+new Date());
+      lis[0].addEventListener("click", function () {
+        alert("click");
+      });
+    </script> -->
+    <script>
+      document.addEventListener("keyup", function (e) {
+        console.log(e.keyCode);
+      });
+      window.addEventListener('load', function () {
+        console.log('load');
+      });
+    </script>
   </body>
 </html>
