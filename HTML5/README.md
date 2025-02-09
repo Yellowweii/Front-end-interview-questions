@@ -10,7 +10,8 @@
 - [10、`<script>`标签会不会阻塞 HTML 的执行?怎么解决?](#script标签会不会阻塞-html-的执行怎么解决)
 - [11、`<script>`标签属性 defer 和 async 的区别是什么？](#script标签属性-defer-和-async-的区别是什么)
 
-
+<br>
+<br>
 
 #### HTML5 新增的元素
 
