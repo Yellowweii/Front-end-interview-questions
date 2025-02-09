@@ -1,14 +1,15 @@
-- [1、HTML5 新增的元素？](#HTML5新增的元素)
-- [2、说一说 title 和 alt 属性](#说一说title和alt属性)
-- [3、html 语义化标签的好处？](#html语义化标签的好处)
-- [4、iframe 是什么？有什么缺点？](#iframe是什么有什么缺点)
-- [5、HTML 全局属性有哪些?](#HTML全局属性有哪些)
-- [6、说说超链接 target 属性的取值和作用？](#说说超链接target属性的取值和作用)
-- [7、meta viewport 是做什么的，怎么写?](#metaviewport是做什么的，怎么写)
-- [8、你用过哪些 meta 标签属性?](#你用过哪些meta标签属性)
-- [9、Canvas 和 SVG 有什么区别？](#Canvas和SVG有什么区别)
-- [10、`<script>`标签会不会阻塞 HTML 的执行?怎么解决?](#`<script>`标签会不会阻塞HTML的执行?怎么解决)
-- [11、`<script>`标签属性 defer 和 async 的区别是什么？](#`<script>`标签属性defer和async的区别是什么)
+- [1、HTML5 新增的元素？](#html5-新增的元素)
+- [2、说一说 title 和 alt 属性](#说一说-title-和-alt-属性)
+- [3、html 语义化标签的好处？](#html-语义化标签的好处)
+- [4、iframe 是什么？有什么缺点？](#iframe-是什么有什么缺点)
+- [5、HTML 全局属性有哪些?](#html-全局属性有哪些)
+- [6、说说超链接 target 属性的取值和作用？](#说说超链接-target-属性的取值和作用)
+- [7、meta viewport 是做什么的，怎么写?](#meta-viewport-是做什么的怎么写)
+- [8、你用过哪些 meta 标签属性?](#你用过哪些-meta-标签属性)
+- [9、Canvas 和 SVG 有什么区别？](#canvas-和-svg-有什么区别)
+- [10、`<script>`标签会不会阻塞 HTML 的执行?怎么解决?](#script标签会不会阻塞-html-的执行怎么解决)
+- [11、`<script>`标签属性 defer 和 async 的区别是什么？](#script标签属性-defer-和-async-的区别是什么)
+
 
 
 #### HTML5 新增的元素
