@@ -10,7 +10,6 @@
 - [10、`<script>`标签会不会阻塞 HTML 的执行?怎么解决?](#`<script>`标签会不会阻塞HTML的执行?怎么解决?)
 - [11、`<script>`标签属性 defer 和 async 的区别是什么？](#`<script>`标签属性defer和async的区别是什么？)
 
-
 #### HTML5 新增的元素
 
 1、新增了许多语义化标签：header、footer、article、section、nav、aside...<br>
