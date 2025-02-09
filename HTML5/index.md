@@ -1,8 +1,21 @@
+- [1、HTML5 新增的元素？](#HTML5新增的元素)
+- [2、说一说 title 和 alt 属性](#说一说title和alt属性)
+- [3、html 语义化标签的好处？](#html语义化标签的好处？)
+- [4、iframe 是什么？有什么缺点？](#iframe是什么？有什么缺点？)
+- [5、HTML 全局属性有哪些?](#HTML全局属性有哪些?)
+- [6、说说超链接 target 属性的取值和作用？](#说说超链接target属性的取值和作用？)
+- [7、meta viewport 是做什么的，怎么写?](#metaviewport是做什么的，怎么写?)
+- [8、你用过哪些 meta 标签属性?](#你用过哪些meta标签属性?)
+- [9、Canvas 和 SVG 有什么区别？](#Canvas和SVG有什么区别？)
+- [10、`<script>`标签会不会阻塞 HTML 的执行?怎么解决?](#`<script>`标签会不会阻塞HTML的执行?怎么解决?)
+- [11、`<script>`标签属性 defer 和 async 的区别是什么？](#`<script>`标签属性defer和async的区别是什么？)
+
 #### HTML5 新增的元素
 
 1、新增了许多语义化标签：header、footer、article、section、nav、aside...<br>
 2、新增了一些多媒体元素：video、audio<br>
-3、新增了一些表单类型和属性：type="email", type="tel", type="search",type="file", placeholder, required, autocomplete
+3、新增了一些表单类型和属性：type="email", type="tel", type="search",type="file", placeholder, required, autocomplete<br>
+4、新增了 canvas 和 svg 标签，用于绘制图像
 
 #### 说一说 title 和 alt 属性
 
@@ -65,7 +78,7 @@ SVG 使用 XML 描述图形，可以通过 DOM 操作和样式表（CSS）动态
 2、使用 defer 属性：在`<script>`标签中添加 defer 属性，将脚本的执行迟到整个页面解析完成后再执行。使用 defer 属性可以保证脚本在文档完全解析后执行，不会阻塞页面的渲染。<br>
 3、使用 async 属性：在`<script>`标签中添加 async 属性，使脚本以异步方式加载和执行，不会阻塞页面的解析和渲染。但要注意，async 属性会导致脚本的执行顺序不确定，适用于独立的脚本文件，脚本之间不存在依赖关系。<br>
 4、动态加载脚本：通过 JavaScript 代码动态地创建`<script>`标签，使得动态脚本的下载和执行是异步的，不会干扰 HTML 的解析和渲染。
-5、对window顶级对象使用事件侦听，window.addEventListener('load', function() {})，等到浏览器所有内容加载完毕后再执行js代码
+5、对 window 顶级对象使用事件侦听，window.addEventListener('load', function() {})，等到浏览器所有内容加载完毕后再执行 js 代码
 
 #### `<script>`标签属性 defer 和 async 的区别是什么？
 
