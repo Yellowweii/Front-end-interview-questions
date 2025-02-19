@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul></ul>
+    <script>
+      const ul = document.querySelector("ul");
+      console.log(ul.classList);
+      let arr = [1, 2, 3, 4];
+      arr.splice(2, 0, "a", "b"); // 从索引 2 开始，不删除任何元素，插入 'a' 和 'b'
+      console.log(arr); // 输出: [1, 2, 'a', 'b', 3, 4]
+      console.log(arr instanceof Array); // 输出: true
+      let test = Symbol("test");
+      let test2 = Symbol("test");
+      let obj = {};
+      obj[test] = "test";
+      obj[test2] = "test";
+      console.log(obj);
+    </script>
+  </body>
+</html>
