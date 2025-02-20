@@ -13,7 +13,12 @@
   <body>
     <ul></ul>
     <script>
-      const ul = document.querySelector("ul");
+      function Student (name, age){
+        this.name = name;
+        this.age = age;
+      }
+      const yellowwei = new Student('yellowwei', 18);
+      console.log(yellowwei);
     </script>
   </body>
 </html>

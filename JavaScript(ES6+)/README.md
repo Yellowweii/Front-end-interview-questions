@@ -1,5 +1,6 @@
 - [1、js 基本数据类型，复杂数据类型有哪些？](#js-基本数据类型复杂数据类型有哪些)
 - [2、往数组中插入一个元素有哪些方法？](#往数组中插入一个元素有哪些方法)
+- [3、操作数组的常用方法有哪些？](#操作数组的常用方法有哪些)
 
 <br>
 <br>
@@ -28,3 +29,23 @@ array.concat(value1, value2, ..., valueN)<br>
 let arr = [1, 2, 3];<br>
 let newArr = arr.concat(4); // [1,2,3,4]<br>
 6、展开运算符：let newArr = [...array, element]
+
+#### 操作数组的常用方法有哪些？
+
+arr.push()，arr.pop()，arr.shift()，arr.unshift()<br>
+arr.splice()：向数组中添加、删除或替换元素。它可以删除指定位置的元素，也可以添加新的元素<br>
+const newArr = Array.from(arr)：从类数组对象创建一个新的数组实例<br>
+arr.indexOf()：返回数组中某个指定元素的第一个索引，如果不存在，则返回-1<br>
+arr.includes()：判断数组是否包含某个元素，返回 true 或 false。<br>
+arr.find()：返回数组中满足条件的第一个元素，若没有找到则返回 undefined。<br>
+const newArr = arr.filter()：创建一个新数组，包含所有满足条件的元素<br>
+arr.forEach()：对数组中的每个元素执行指定的回调函数<br>
+const newArr = arr.map()：创建一个新数组，其中的元素是通过调用指定函数处理原数组的每个元素得到的<br>
+arr.some()：检查数组中是否有至少一个元素满足条件，返回布尔值<br>
+arr.every()：检查数组中是否所有元素都满足指定条件，返回布尔值<br>
+arr.reduce()：对数组中的每个元素执行指定的回调函数，返回一个单一的值。通常用于累加<br>
+arr.sort()：对数组中的元素进行排序，默认是按字典顺序排序<br>
+arr.reverse()：反转数组中的元素顺序<br>
+arr.join()：将数组中的元素连接成一个字符串，可以指定分隔符<br>
+const newArr = arr1.concat(arr2)：合并两个或多个数组，返回新数组<br>
+const newArr = arr.slice()返回一个数组的子数组（浅拷贝）
