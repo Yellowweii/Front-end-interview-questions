@@ -13,12 +13,10 @@
   <body>
     <ul></ul>
     <script>
-      function Student (name, age){
-        this.name = name;
-        this.age = age;
+      let obj = {id: 1};
+      for (let key in obj) {
+        console.log("进入了");
       }
-      const yellowwei = new Student('yellowwei', 18);
-      console.log(yellowwei);
     </script>
   </body>
 </html>
