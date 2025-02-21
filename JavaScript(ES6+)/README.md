@@ -57,3 +57,20 @@ const newArr = arr.slice()返回一个数组的子数组（浅拷贝）
 2、使用 JSON.stringify()方法：通过将对象转换为 JSON 字符串，空对象会被转换成 "{}"，而有属性的对象则是一个包含内容的 JSON 字符串。可以通过比较转换后的字符串是否等于 "{}" 来判断对象是否为空。<br>
 3、使用 for...in 遍历对象：如果对象没有任何可枚举属性，则不会进入循环体。你可以通过这种方式判断对象是否为空。<br>
 4、使用 Object.getOwnPropertyNames()方法：Object.getOwnPropertyNames() 返回一个数组，数组包含对象的所有自有属性的键名。通过检查该数组的长度是否为 0 来判断对象是否为空。
+
+#### 如何判断一个数据的数据类型？
+
+1、使用 typeof<br>
+console.log(typeof 123); // 'number'<br>
+console.log(typeof 'hello'); // 'string'<br>
+console.log(typeof true); // 'boolean'<br>
+console.log(typeof undefined); // 'undefined'<br>
+2、使用 instanceof<br>
+console.log([] instanceof Array); // true<br>
+console.log({} instanceof Object); // true<br>
+3、Array.isArray()<br>
+console.log(Array.isArray([1, 2, 3])); // true<br>
+console.log(Array.isArray('hello')); // false<br>
+4、使用 constructor 属性<br>
+console.log([].constructor === Array); // true<br>
+console.log(({}).constructor === Object); // true
