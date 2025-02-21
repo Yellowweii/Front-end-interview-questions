@@ -5,24 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      ul {
-        border: 3px solid red;
+      .box {
+        width: 500px;
+        height: 500px;
+        background-color: #000;
+        color: #fff;
+        font-size: 100px;
+        text-align: center;
       }
     </style>
   </head>
   <body>
-    <ul></ul>
+    <div class="box"></div>
     <script>
-      let obj = {id: 1};
-      for (let key in obj) {
-        console.log("进入了");
+      let i = 1;
+      const box = document.querySelector(".box");
+      box.innerHTML = i;
+      function mouseMove() {
+        i++;
+        box.innerHTML = i;
       }
-      let arr = [1,2,2,3,4,4,5];
-      const newArr = arr.map((item, index) => [item, index]);    
-      console.log(newArr);
-      const map = new Map(newArr)
-      console.log([...map.keys()]);
-      
+      function debounce(fn, delay) {
+        let timer;
+        return function () {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(fn, delay);
+        };
+      }
+      function throttle(fn, delay) {
+        let timer = null;
+        return function() {
+          if(!timer){
+            setTimeout(() => {
+              fn();
+              timer = null;
+            },delay)
+          }
+        }
+      }
+      box.addEventListener("mousemove", debounce(mouseMove, 500));
     </script>
   </body>
 </html>
