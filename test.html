@@ -34,16 +34,18 @@
       }
       function throttle(fn, delay) {
         let timer = null;
-        return function() {
-          if(!timer){
+        return function () {
+          if (!timer) {
             setTimeout(() => {
               fn();
               timer = null;
-            },delay)
+            }, delay);
           }
-        }
+        };
       }
       box.addEventListener("mousemove", debounce(mouseMove, 500));
+      console.log(Object.prototype.toString.call(null));
+      console.log(Object.prototype.toString.call(undefined));
     </script>
   </body>
 </html>

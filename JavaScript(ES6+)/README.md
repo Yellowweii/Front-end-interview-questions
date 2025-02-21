@@ -1,4 +1,4 @@
-- [1、js 基本数据类型，复杂数据类型有哪些？](#js-基本数据类型复杂数据类型有哪些)
+- [1、js 基本数据类型，复杂数据类型有哪些？它们有什么区别？](#js-基本数据类型复杂数据类型有哪些它们有什么区别)
 - [2、往数组中插入一个元素有哪些方法？](#往数组中插入一个元素有哪些方法)
 - [3、操作数组的常用方法有哪些？](#操作数组的常用方法有哪些)
 - [4、如何判断一个对象是否是空对象？](#如何判断一个对象是否是空对象)
@@ -11,12 +11,13 @@
 <br>
 <br>
 
-#### js 基本数据类型，复杂数据类型有哪些？
+#### js 基本数据类型，复杂数据类型有哪些？它们有什么区别？
 
 基本数据类型：Number,String,Boolean,null,undefined<br>
 BigInt:表示任意精度的整数<br>
 Symbol:表示唯一且不可变的值，通常表示对象属性的键名<br>
-复杂数据类型：Object,Array,Function
+复杂数据类型：Object,Array,Function<br>
+区别：存储位置不同，简单数据类型存储在栈区，复杂数据类型存储在堆区
 
 #### 往数组中插入一个元素有哪些方法？
 
@@ -78,7 +79,9 @@ console.log(Array.isArray([1, 2, 3])); // true<br>
 console.log(Array.isArray('hello')); // false<br>
 4、使用 constructor 属性<br>
 console.log([].constructor === Array); // true<br>
-console.log(({}).constructor === Object); // true
+console.log(({}).constructor === Object); // true<br>
+5、使用 Object.prototype.toString.call()：<br>
+Object.prototype.toString.call() 中，call()被用来指定 this，即我们可以将任意类型的值作为参数传给 Object.prototype.toString()，以便获取该值的类型。
 
 #### 说一说你对闭包的理解
 
