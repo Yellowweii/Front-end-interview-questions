@@ -17,7 +17,11 @@
       for (let key in obj) {
         console.log("进入了");
       }
-      console.log(typeof [1,2,3]);
+      let arr = [1,2,2,3,4,4,5];
+      const newArr = arr.map((item, index) => [item, index]);    
+      console.log(newArr);
+      const map = new Map(newArr)
+      console.log([...map.keys()]);
       
     </script>
   </body>
