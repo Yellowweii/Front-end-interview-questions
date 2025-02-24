@@ -4,48 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      .box {
-        width: 500px;
-        height: 500px;
-        background-color: #000;
-        color: #fff;
-        font-size: 100px;
-        text-align: center;
-      }
-    </style>
   </head>
   <body>
     <div class="box"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-      let i = 1;
-      const box = document.querySelector(".box");
-      box.innerHTML = i;
-      function mouseMove() {
-        i++;
-        box.innerHTML = i;
-      }
-      function debounce(fn, delay) {
-        let timer;
-        return function () {
-          if (timer) clearTimeout(timer);
-          timer = setTimeout(fn, delay);
-        };
-      }
-      function throttle(fn, delay) {
-        let timer = null;
-        return function () {
-          if (!timer) {
-            setTimeout(() => {
-              fn();
-              timer = null;
-            }, delay);
-          }
-        };
-      }
-      box.addEventListener("mousemove", debounce(mouseMove, 500));
-      console.log(Object.prototype.toString.call(null));
-      console.log(Object.prototype.toString.call(undefined));
+      axios({
+        url: "http://jsonplaceholder.typicode.com/posts",
+      }).then((res) => {
+        console.log(res);
+      });
     </script>
   </body>
 </html>
