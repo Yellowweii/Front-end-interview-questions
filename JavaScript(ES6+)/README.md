@@ -10,6 +10,7 @@
 - [10、箭头函数和普通函数的区别？](#箭头函数和普通函数的区别)
 - [11、聊一聊 js 中的事件循环](#聊一聊-js-中的事件循环)
 - [12、对原型、原型链的理解](#对原型-原型链的理解)
+- [13、如何实现一个对象的浅拷贝和深拷贝？](#如何实现一个对象的浅拷贝和深拷贝)
 
 <br>
 <br>
@@ -146,3 +147,52 @@ function throttle(fn, delay) {
 
 每个对象都有原型\_\_proto\_\_，它指向该对象构造函数的原型对象 prototype。如果访问对象的某个属性或方法时，首先会检查该对象自身是否有。如果没有，就会沿着原型链向上查找，直到找到为止，或者到达 null。
 通过原型链，子对象可以继承父对象的属性和方法。
+
+#### 如何实现一个对象的浅拷贝和深拷贝？
+
+浅拷贝：
+1、Object.assign()：用于将一个或多个源对象的所有可枚举属性复制到目标对象，并返回目标对象。
+
+```javascript
+const obj = { a: 1, b: 2, c: { d: 3 } };
+const shallowCopy = {};
+Object.assign(shallowCopy, obj);
+console.log(shallowCopy); // { a: 1, b: 2, c: { d: 3 } }
+```
+
+2、展开运算符：const shallowCopy = { ...obj }<br>
+3、使用 for...in 手动进行浅拷贝
+
+```javascript
+const obj = { a: 1, b: 2, c: { d: 3 } };
+const shallowCopy = {};
+for (let key in obj) {
+  shallowCopy[key] = obj[key];
+}
+```
+
+深拷贝：
+1、使用函数递归：
+
+```javascript
+function deepClone(newObj, oldObj) {
+  for (let key in oldObj) {
+    if (oldObj[key] instanceof Array) {
+      newObj[key] = [];
+      deepClone(newObj[key], oldObj[key]);
+    } else if (oldObj[key] instanceof Object) {
+      newObj[key] = {};
+      deepClone(newObj[key], oldObj[key]);
+    } else {
+      newObj[key] = oldObj[key];
+    }
+  }
+}
+const oldObj = { a: 1, b: 2, c: { d: 3 } };
+const newObj = {};
+deepClone(newObj, oldObj);
+console.log(newObj);
+```
+
+2、使用 JSON.stringfy()和 JSON.parse()：这种方法是最简单的深拷贝方式，通过将对象转换为 JSON 字符串，然后再将其解析回新的对象。<br>
+3、使用第三方库 lodash：\_.cloneDeep() 是一个非常常用且稳定的深拷贝方法，它处理得很全面，支持复杂的对象结构、Date、Map、Set 等

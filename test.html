@@ -19,11 +19,23 @@
     <div class="box"></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-      axios({
-        url: "http://jsonplaceholder.typicode.com/posts",
-      }).then((res) => {
-        console.log(res);
-      });
+      function deepClone(newObj, oldObj) {
+        for (let key in oldObj) {
+          if (oldObj[key] instanceof Array) {
+            newObj[key] = [];
+            deepClone(newObj[key], oldObj[key]);
+          } else if (oldObj[key] instanceof Object) {
+            newObj[key] = {};
+            deepClone(newObj[key], oldObj[key]);
+          } else {
+            newObj[key] = oldObj[key];
+          }
+        }
+      }
+      const oldObj = { a: 1, b: 2, c: { d: 3 } };
+      const newObj = {};
+      deepClone(newObj, oldObj);
+      console.log(newObj);
     </script>
   </body>
 </html>
