@@ -14,6 +14,7 @@
 - [14、mouseenter 和 mouseover 的区别？](#mouseenter-和-mouseover-的区别)
 - [15、什么是 Promise？有什么好处？](#什么是-promise有什么好处)
 - [16、谈一谈 js 的垃圾回收机制](#谈一谈-js-的垃圾回收机制)
+- [17、window.onload 和 document.onDOMContentLoaded 有什么区别？](#windowonload-和-documentondomcontentloaded-有什么区别)
 
 <br>
 <br>
@@ -217,3 +218,16 @@ Promise 是处理异步任务的一种工具。<br>
 JavaScript 的垃圾回收机制用于自动管理内存，即自动回收不再使用的内存空间，防止内存泄漏。垃圾回收机制有两种算法：<br>
 1、标记清除法：标记阶段，从根对象（全局对象 window 或 global）开始，遍历所有可达的对象，为所有可达的对象设置一个标记，表明它们是活动的，正在被使用。清除阶段，遍历堆中的所有对象，查看哪些对象没有被标记为活动的，将这些不再活动的对象视为垃圾，释放它们占用的内存。<br>
 2、引用计数法：当一个对象被创建时，引用计数器会被设置为 1，每次引用该对象时，计数器加 1；每次引用被解除时，计数器减 1。当计数器的值为 0 时，意味着没有任何地方再引用该对象，该对象就可以被垃圾回收。缺点：循环引用：如果对象 A 引用对象 B，且对象 B 引用对象 A，但它们没有被外部引用，那么它们的引用计数永远不会归零，因此无法被回收。
+
+#### window.onload 和 document.onDOMContentLoaded 有什么区别？
+
+````javascript
+//当页面所有资源加载完成，则触发（涉及到所有资源，所以触发时机较晚）。
+window.onload = function() {
+console.log("window loaded");
+};
+//DOM 结构解析完成
+document.addEventListener("DOMContentLoaded", function() {
+console.log("DOMContentLoaded");
+});```
+````
