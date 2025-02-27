@@ -11,6 +11,7 @@
 - [11、聊一聊 js 中的事件循环](#聊一聊-js-中的事件循环)
 - [12、对原型、原型链的理解](#对原型-原型链的理解)
 - [13、如何实现一个对象的浅拷贝和深拷贝？](#如何实现一个对象的浅拷贝和深拷贝)
+- [14、mouseenter 和 mouseover 的区别？](#mouseenter-和-mouseover-的区别)
 
 <br>
 <br>
@@ -196,3 +197,7 @@ console.log(newObj);
 
 2、使用 JSON.stringfy()和 JSON.parse()：这种方法是最简单的深拷贝方式，通过将对象转换为 JSON 字符串，然后再将其解析回新的对象。<br>
 3、使用第三方库 lodash：\_.cloneDeep() 是一个非常常用且稳定的深拷贝方法，它处理得很全面，支持复杂的对象结构、Date、Map、Set 等
+
+#### mouseenter 和 mouseover 的区别？
+
+mouseenter 不会触事件冒泡，mouseover 会触发事件冒泡。
