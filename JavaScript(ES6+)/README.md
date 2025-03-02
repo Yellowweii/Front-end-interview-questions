@@ -15,6 +15,7 @@
 - [15、什么是 Promise？有什么好处？](#什么是-promise有什么好处)
 - [16、谈一谈 js 的垃圾回收机制](#谈一谈-js-的垃圾回收机制)
 - [17、window.onload 和 document.onDOMContentLoaded 有什么区别？](#windowonload-和-documentondomcontentloaded-有什么区别)
+- [18、阻止事件冒泡有哪些方法？](#阻止事件冒泡有哪些方法)
 
 <br>
 <br>
@@ -231,3 +232,35 @@ document.addEventListener("DOMContentLoaded", function() {
 console.log("DOMContentLoaded");
 });```
 ````
+
+#### 阻止事件冒泡有哪些方法？
+
+1、event.stopPropagation()
+
+```javascript
+<div id="parent">
+  <button id="child">Click me</button>
+</div>
+<script>
+  document.getElementById("parent").addEventListener("click", function () {
+    console.log("父元素被点击");
+  });
+
+  document.getElementById("child").addEventListener("click", function (event) {
+    event.stopPropagation(); // 阻止事件冒泡
+    console.log("子元素被点击");
+  });
+</script>
+```
+
+2、capture: true(开启事件捕获)
+
+```javascript
+document.getElementById("child").addEventListener(
+  "click",
+  function () {
+    console.log("捕获阶段：子元素被点击");
+  },
+  true // 设置捕获阶段
+);
+```
