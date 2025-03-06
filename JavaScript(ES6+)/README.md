@@ -264,3 +264,7 @@ document.getElementById("child").addEventListener(
   true // 设置捕获阶段
 );
 ```
+
+#### "foo"&&"bar"和"foo"||"bar"的结果是什么？
+
+"foo" 和 "bar" 都是非空字符串，在 JavaScript 被视为真值，结果为："bar"；"foo" 是真值，因为逻辑中断，所以直接返回 "foo"，不再评估 "bar"，结果为："foo"。
