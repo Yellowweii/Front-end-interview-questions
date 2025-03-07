@@ -16,6 +16,7 @@
 - [16、谈一谈 js 的垃圾回收机制](#谈一谈-js-的垃圾回收机制)
 - [17、window.onload 和 document.onDOMContentLoaded 有什么区别？](#windowonload-和-documentondomcontentloaded-有什么区别)
 - [18、阻止事件冒泡有哪些方法？](#阻止事件冒泡有哪些方法)
+- [19、"foo"&&"bar"和"foo"||"bar"的结果是什么？](#foobar和foobar的结果是什么)
 
 <br>
 <br>
