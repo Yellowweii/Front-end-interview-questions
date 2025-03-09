@@ -17,6 +17,7 @@
 - [17、window.onload 和 document.onDOMContentLoaded 有什么区别？](#windowonload-和-documentondomcontentloaded-有什么区别)
 - [18、阻止事件冒泡有哪些方法？](#阻止事件冒泡有哪些方法)
 - [19、"foo"&&"bar"和"foo"||"bar"的结果是什么？](#foobar和foobar的结果是什么)
+- [20、你觉得TypeScript比起JavaScript有哪些优势？](#你觉得typescript比起javascript有哪些优势)
 
 <br>
 <br>
@@ -269,3 +270,9 @@ document.getElementById("child").addEventListener(
 #### "foo"&&"bar"和"foo"||"bar"的结果是什么？
 
 "foo" 和 "bar" 都是非空字符串，在 JavaScript 被视为真值，结果为："bar"；"foo" 是真值，因为逻辑中断，所以直接返回 "foo"，不再评估 "bar"，结果为："foo"。
+
+#### 你觉得TypeScript比起JavaScript有哪些优势？
+
+1、TypeScript是一门静态类型语言，代码运行之前需要先编译，可以提前发现代码中的错误，减少runtime error；而JavaScript是动态类型语言，运行时可能遇到错误。<br>
+2、TypeScript提供了类型支持，明确限制了变量的类型，提高了代码的可读性和可维护性。
+
