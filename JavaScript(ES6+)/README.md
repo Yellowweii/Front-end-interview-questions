@@ -274,5 +274,5 @@ document.getElementById("child").addEventListener(
 #### 你觉得TypeScript比起JavaScript有哪些优势？
 
 1、TypeScript是一门静态类型语言，代码运行之前需要先编译，可以提前发现代码中的错误，减少runtime error；而JavaScript是动态类型语言，运行时可能遇到错误。<br>
-2、TypeScript提供了类型支持，明确限制了变量的类型，提高了代码的可读性和可维护性。
+2、TypeScript提供了类型检查，明确限制了变量的类型，提高了代码的安全性，可读性和可维护性。
 
