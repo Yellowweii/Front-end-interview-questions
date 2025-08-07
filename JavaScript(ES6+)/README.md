@@ -224,7 +224,7 @@ JavaScript 的垃圾回收机制用于自动管理内存，即自动回收不再
 
 #### window.onload 和 document.onDOMContentLoaded 有什么区别？
 
-````javascript
+```javascript
 //当页面所有资源加载完成，则触发（涉及到所有资源，所以触发时机较晚）。
 window.onload = function() {
 console.log("window loaded");
@@ -232,8 +232,8 @@ console.log("window loaded");
 //DOM 结构解析完成
 document.addEventListener("DOMContentLoaded", function() {
 console.log("DOMContentLoaded");
-});```
-````
+});
+```
 
 #### 阻止事件冒泡有哪些方法？
 
@@ -276,3 +276,48 @@ document.getElementById("child").addEventListener(
 1、TypeScript是一门静态类型语言，代码运行之前需要先编译，可以提前发现代码中的错误，减少runtime error；而JavaScript是动态类型语言，运行时可能遇到错误。<br>
 2、TypeScript提供了类型检查，明确限制了变量的类型，提高了代码的安全性，可读性和可维护性。
 
+#### 请分析以下代码的执行顺序，并解释原因？
+
+```javascript
+console.log('1');
+setTimeout(() => {
+  console.log('2');
+  Promise.resolve().then(() => console.log('3'));
+}, 0);
+new Promise((resolve) => {
+  console.log('4');
+  resolve();
+}).then(() => {
+  console.log('5');
+  setTimeout(() => console.log('6'), 0);
+});
+console.log('7');
+```
+
+输出结果：1，4，7，5，2，3，6
+原因：Js是一门单线程语言，同步任务 > 微任务 > 宏任务，promise.then的回调函数属于微任务，setTimeout和setInterval属于宏任务。
+
+#### 请实现一个 Promise.all，要求参数与返回值与现实的一致。加分项：实现 TS 版本
+
+```javascript
+function myPromiseAll(promises) {
+  return new Promise((resolve, reject) => {
+    const results = [];
+    let completedCount = 0;
+    const total = promises.length;
+    if(total === 0) {
+      return resolve([]);
+    }
+
+    promises.forEach((p, i) => {
+      Promise.resolve(p).then(value => {
+        resluts[i] = value;
+        completedCount++;
+        if(completedCount === total) {
+           resolve(results)
+        }
+      }).catch(reject)
+    })
+  })
+}
+```
