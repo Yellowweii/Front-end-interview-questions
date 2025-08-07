@@ -15,6 +15,9 @@
 - [15、什么是 Promise？有什么好处？](#什么是-promise有什么好处)
 - [16、谈一谈 js 的垃圾回收机制](#谈一谈-js-的垃圾回收机制)
 - [17、window.onload 和 document.onDOMContentLoaded 有什么区别？](#windowonload-和-documentondomcontentloaded-有什么区别)
+- [18、阻止事件冒泡有哪些方法？](#阻止事件冒泡有哪些方法)
+- [19、"foo"&&"bar"和"foo"||"bar"的结果是什么？](#foobar和foobar的结果是什么)
+- [20、你觉得TypeScript比起JavaScript有哪些优势？](#你觉得typescript比起javascript有哪些优势)
 
 <br>
 <br>
@@ -231,6 +234,47 @@ document.addEventListener("DOMContentLoaded", function() {
 console.log("DOMContentLoaded");
 });
 ```
+
+#### 阻止事件冒泡有哪些方法？
+
+1、event.stopPropagation()
+
+```javascript
+<div id="parent">
+  <button id="child">Click me</button>
+</div>
+<script>
+  document.getElementById("parent").addEventListener("click", function () {
+    console.log("父元素被点击");
+  });
+
+  document.getElementById("child").addEventListener("click", function (event) {
+    event.stopPropagation(); // 阻止事件冒泡
+    console.log("子元素被点击");
+  });
+</script>
+```
+
+2、capture: true(开启事件捕获)
+
+```javascript
+document.getElementById("child").addEventListener(
+  "click",
+  function () {
+    console.log("捕获阶段：子元素被点击");
+  },
+  true // 设置捕获阶段
+);
+```
+
+#### "foo"&&"bar"和"foo"||"bar"的结果是什么？
+
+"foo" 和 "bar" 都是非空字符串，在 JavaScript 被视为真值，结果为："bar"；"foo" 是真值，因为逻辑中断，所以直接返回 "foo"，不再评估 "bar"，结果为："foo"。
+
+#### 你觉得TypeScript比起JavaScript有哪些优势？
+
+1、TypeScript是一门静态类型语言，代码运行之前需要先编译，可以提前发现代码中的错误，减少runtime error；而JavaScript是动态类型语言，运行时可能遇到错误。<br>
+2、TypeScript提供了类型检查，明确限制了变量的类型，提高了代码的安全性，可读性和可维护性。
 
 #### 请分析以下代码的执行顺序，并解释原因？
 
