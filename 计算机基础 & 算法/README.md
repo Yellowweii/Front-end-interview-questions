@@ -102,3 +102,55 @@ array.forEach((item) => {
   }
 });
 ```
+
+#### 在一个文档管理系统中，有多个用户上传了同一文档的不同版本。请实现一个函数，接收一个文档列表，根据文档的内容哈希值去重，并按照最后修改时间排序。
+
+```typescript
+interface Document {
+  id: string;
+  contentHash: string;
+  lastModified: number; // 时间戳
+  fileName: string;
+}
+
+function deduplicateAndSort(documents: Document[]): Document[] {
+  const hashMap = new Map<string, Document>();
+
+  for (const doc of documents) {
+    const existing = hashMap.get(doc.contentHash);
+    if (!existing || doc.lastModified > existing.lastModified) {
+      hashMap.set(doc.contentHash, doc);
+    }
+  }
+
+  // 提取去重后的文档列表并按最后修改时间降序排序
+  return Array.from(hashMap.values()).sort(
+    (a, b) => b.lastModified - a.lastModified
+  );
+}
+```
+
+#### 请实现 flattenTree 函数
+
+```typescript
+interface TreeNode {
+  id: string;
+  children?: TreeNode[];
+}
+
+function flattenTree(root: TreeNode): string[] {
+  // 要求：返回所有节点的 id 按层级顺序组成的数组（广度优先）
+  const result: string[] = [];
+  const queue: TreeNode[] = [root];
+
+  while(queue.length > 0) {
+    const node = queue.shift()!;
+    result.push(node.id);
+    if(node.children && node.children.length > 0) {
+      queue.push(...node.children);
+    }
+  }
+
+  return result;
+}
+```
