@@ -297,6 +297,45 @@ console.log("7");
 输出结果：1，4，7，5，2，3，6
 原因：Js 是一门单线程语言，同步任务 > 微任务 > 宏任务，promise.then 的回调函数属于微任务，setTimeout 和 setInterval 属于宏任务。
 
+#### 请分析一下代码的执行顺序
+
+```javascript
+async function async1() {
+  console.log ('async1 start');
+  await async2 ()
+  console.log('async1 end');
+}
+
+async function async2() {
+  console.log('async2');
+}
+
+console.log('script start');
+
+setTimeout(function () {
+  console.log('setTimeout0')
+}, 0);
+
+setTimeout(function () {
+  console.log('setTimeout3')
+}, 3);
+
+async1();
+
+new Promise(function (resolve) {
+  console.log('promise1');
+  resolve();
+  console.log('promise2');
+})
+.then(function () {
+  console.log('promise3');
+});
+
+console.log('script end');
+```
+
+script start -> async1 start -> async2 -> promise1 -> promise2 -> script end -> async1 end -> promise3 -> setTimeout0 -> setTimeout3
+
 #### 请实现一个 Promise.all，要求参数与返回值与现实的一致。加分项：实现 TS 版本
 
 ```javascript

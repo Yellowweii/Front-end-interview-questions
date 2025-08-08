@@ -154,3 +154,33 @@ function flattenTree(root: TreeNode): string[] {
   return result;
 }
 ```
+
+#### 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效,例：
+输入：() -> 返回 true <br>
+输入：()[]{} -> 返回 true <br>
+输入：(] ->  返回 false <br>
+输入：([)] -> 返回 false <br>
+输入：{[]} -> 返回true <br>
+
+```javascript
+const isValidString = (s) => {
+  const map = new Map();
+  map.set(')', '(');
+  map.set('}', '{');
+  map.set(']', '[');
+
+  const stack = [];
+
+  for(let char of s) {
+    if(!map.has(char)) {
+      stack.push(char);
+    }else {
+      if(stack.pop() !== map.get(char)) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+}
+```
