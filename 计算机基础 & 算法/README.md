@@ -88,7 +88,9 @@ const uniqueArray = [...new Set(array)];
 
 ```javascript
 const array = [1, 2, 2, 3, 4, 4, 5];
-const uniqueArray = Array.from(new Map(array.map((item, index) => [item, index])).keys());
+const uniqueArray = Array.from(
+  new Map(array.map((item, index) => [item, index])).keys()
+);
 ```
 
 3、使用 for/forEach()遍历数组
@@ -143,10 +145,10 @@ function flattenTree(root: TreeNode): string[] {
   const result: string[] = [];
   const queue: TreeNode[] = [root];
 
-  while(queue.length > 0) {
+  while (queue.length > 0) {
     const node = queue.shift()!;
     result.push(node.id);
-    if(node.children && node.children.length > 0) {
+    if (node.children && node.children.length > 0) {
       queue.push(...node.children);
     }
   }
@@ -156,31 +158,74 @@ function flattenTree(root: TreeNode): string[] {
 ```
 
 #### 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效,例：
+
 输入：() -> 返回 true <br>
 输入：()[]{} -> 返回 true <br>
-输入：(] ->  返回 false <br>
+输入：(] -> 返回 false <br>
 输入：([)] -> 返回 false <br>
-输入：{[]} -> 返回true <br>
+输入：{[]} -> 返回 true <br>
 
 ```javascript
 const isValidString = (s) => {
   const map = new Map();
-  map.set(')', '(');
-  map.set('}', '{');
-  map.set(']', '[');
+  map.set(")", "(");
+  map.set("}", "{");
+  map.set("]", "[");
 
   const stack = [];
 
-  for(let char of s) {
-    if(!map.has(char)) {
+  for (let char of s) {
+    if (!map.has(char)) {
       stack.push(char);
-    }else {
-      if(stack.pop() !== map.get(char)) {
+    } else {
+      if (stack.pop() !== map.get(char)) {
         return false;
       }
     }
   }
 
   return stack.length === 0;
-}
+};
+```
+
+#### 请完成注释中的要求
+
+```typescript
+declare const loadImage: (url: string) => Promise<string>;
+/**
+ * 获取图片
+ * @param {string[]} urls 图片的路径
+ * @param {number} limit 同时能获取的个数
+ * @return  {Promise<string[]>}
+ */
+
+const loadImages = async (urls: string[], limit: number): Promise<string[]> => {
+  const state = {
+    i: 0,
+  };
+  const imgStrs: string[] = new Array(urls.length);
+
+  const promises = new Array(limit)
+    .fill(0)
+    .map(() => loadLimitImage(state, urls, imgStrs));
+  await Promise.all(promises);
+
+  return imgStrs;
+};
+
+const loadLimitImage = async (
+  state: { i: number },
+  urls: string[],
+  imgStrs: string[]
+) => {
+  while (state.i < urls.length) {
+    const currentIndex = state.i++;
+    try {
+      const res = await loadImage(urls[currentIndex]);
+      imgStrs[currentIndex] = res;
+    } catch (err) {
+      imgStrs[currentIndex] = "";
+    }
+  }
+};
 ```
