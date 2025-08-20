@@ -152,7 +152,7 @@ function throttle(fn, delay) {
 
 #### 对原型、原型链的理解
 
-Js中每一个对象都会有自己的proto属性，当查找一个当前对象没有的属性时，会去查找它的proto属性，而它的proto属性和它的构造函数的prototype属性指向的是同一个对象，里面共享一些属性和方法，如果还没找到，就会继续顺着proto属性所指对象的proto属性进行查找，因为它本身是一个对象，而它的proto属性则是和Object.prototype属性指向的是同一个对象，如果还没找到，就继续顺着原型链向上查找，直到找到null为止。
+Js 中每一个对象都会有自己的 proto 属性，当查找一个当前对象没有的属性时，会去查找它的 proto 属性，而它的 proto 属性和它的构造函数的 prototype 属性指向的是同一个对象，里面共享一些属性和方法，如果还没找到，就会继续顺着 proto 属性所指对象的 proto 属性进行查找，因为它本身是一个对象，而它的 proto 属性则是和 Object.prototype 属性指向的是同一个对象，如果还没找到，就继续顺着原型链向上查找，直到找到 null 为止。
 
 #### 如何实现一个对象的浅拷贝和深拷贝？
 
@@ -300,37 +300,36 @@ console.log("7");
 
 ```javascript
 async function async1() {
-  console.log ('async1 start');
-  await async2 ()
-  console.log('async1 end');
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
 }
 
 async function async2() {
-  console.log('async2');
+  console.log("async2");
 }
 
-console.log('script start');
+console.log("script start");
 
 setTimeout(function () {
-  console.log('setTimeout0')
+  console.log("setTimeout0");
 }, 0);
 
 setTimeout(function () {
-  console.log('setTimeout3')
+  console.log("setTimeout3");
 }, 3);
 
 async1();
 
 new Promise(function (resolve) {
-  console.log('promise1');
+  console.log("promise1");
   resolve();
-  console.log('promise2');
-})
-.then(function () {
-  console.log('promise3');
+  console.log("promise2");
+}).then(function () {
+  console.log("promise3");
 });
 
-console.log('script end');
+console.log("script end");
 ```
 
 script start -> async1 start -> async2 -> promise1 -> promise2 -> script end -> async1 end -> promise3 -> setTimeout0 -> setTimeout3
@@ -366,33 +365,35 @@ function myPromiseAll(promises) {
 
 ```javascript
 for (let i = 0; i < 2; i++) {
-   setTimeout(function () {
-      console.log(i);
-   }, 0);
+  setTimeout(function () {
+    console.log(i);
+  }, 0);
 }
 ```
+
 0 1
 
 ```javascript
 for (var i = 0; i < 2; i++) {
-   setTimeout(function () {
-      console.log(i);
-   }, 0);
+  setTimeout(function () {
+    console.log(i);
+  }, 0);
 }
 ```
+
 2 2
 
 #### 对于下⾯的代码，等式成⽴的是：
 
 ```javascript
-const a = 1
-const b = 1
-const c = null
-const d = null
-const e = [ ]
-const f = [ ]
-const g = { }
-const h = { }
+const a = 1;
+const b = 1;
+const c = null;
+const d = null;
+const e = [];
+const f = [];
+const g = {};
+const h = {};
 ```
 
 a === b; c === d; e !== f; g !== h;
@@ -401,16 +402,16 @@ a === b; c === d; e !== f; g !== h;
 
 ```javascript
 if ([]) {
-  console.log('A') // A
+  console.log("A"); // A
 }
 if ({}) {
-  console.log('B') // B
+  console.log("B"); // B
 }
-if ('') {
-  console.log('C') // C
+if ("") {
+  console.log("C"); // C
 }
 if (null) {
-  console.log('D') // D
+  console.log("D"); // D
 }
 ```
 
@@ -418,6 +419,88 @@ A B
 
 #### 为什么 (0.1 + 0.2) === 0.3 返回 false？
 
-因为JavaScript使用64位双精度浮点数表示所有数字，大部分十进制小数无法被精确转换成二进制小数，所以会存在误差。
+因为 JavaScript 使用 64 位双精度浮点数表示所有数字，大部分十进制小数无法被精确转换成二进制小数，所以会存在误差。
 
+#### parseInt()和 Number()的区别
 
+parseInt()将字符串按指定进制解析成整数，遇到非数字字符就停止解析；Number()将整个值（字符串、布尔、对象等）转换成数字（整数或浮点数），必须整个字符串能完全转换，否则返回 NaN
+
+#### 什么是构造函数继承，什么是原型链继承，什么是组合继承？
+
+构造函数继承指的是在子类构造函数内部，调用父类构造函数，把父类的实例属性“复制”到子类实例上。典型做法：Parent.call(this, ...)，作用：继承父类的 实例属性，每个子类实例都有自己独立的属性。不能继承父类原型上的方法（方法必须用原型链继承才能拿到）。
+
+```javascript
+function Parent(name) {
+  this.name = name;
+  this.hobbies = ["coding", "reading"];
+}
+
+function Child(name, age) {
+  Parent.call(this, name); // 构造函数继承
+  this.age = age;
+}
+
+const c1 = new Child("Tom", 18);
+const c2 = new Child("Jerry", 20);
+
+c1.hobbies.push("gaming");
+
+console.log(c1.hobbies); // ["coding","reading","gaming"]
+console.log(c2.hobbies); // ["coding","reading"]   <-- 独立
+```
+
+原型链继承——通过 Child.prototype = Object.create(Parent.prototype)，让子类原型链指向父类原型。因为替换了 Child.prototype，要把 Child.prototype.constructor 改回 Child
+
+```javascript
+function Parent(name) {
+  this.name = name;
+}
+Parent.prototype.sayHello = function () {
+  console.log(`Hello, I am ${this.name}`);
+};
+
+function Child(name, age) {
+  // 继承父类的属性
+  Parent.call(this, name);
+  this.age = age;
+}
+
+// 关键：让子类原型指向父类原型的一个实例，从而继承方法
+Child.prototype = Object.create(Parent.prototype);
+// 修正 constructor 指向
+Child.prototype.constructor = Child;
+
+Child.prototype.sayAge = function () {
+  console.log(`I am ${this.age} years old`);
+};
+
+const c = new Child("Tom", 18);
+c.sayHello(); // Hello, I am Tom  <-- 来自 Parent.prototype
+c.sayAge(); // I am 18 years old <-- 来自 Child.prototype
+```
+
+组合继承 = 构造函数继承 + 原型链继承，ES6 class 的组合继承其实就是语法糖
+
+```javascript
+class Parent {
+  constructor(name) {
+    this.name = name;
+  }
+  sayHello() {
+    console.log(`Hello, I am ${this.name}`);
+  }
+}
+
+class Child extends Parent {
+  constructor(name, age) {
+    super(name); // 调用 Parent 构造函数，继承实例属性
+    this.age = age;
+  }
+  sayAge() {
+    console.log(`I am ${this.age}`);
+  }
+}
+```
+
+super(name) → 构造函数继承
+extends Parent → 原型链继承

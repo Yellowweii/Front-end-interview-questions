@@ -229,3 +229,32 @@ const loadLimitImage = async (
   }
 };
 ```
+
+#### 输出数组中出现次数最多的元素，以及它的次数
+
+```javascript
+const arr = [1,2,3,4,5,6,7,2,2,2,2,4];
+const calculateCount = (arr) => {
+  const map = new Map();
+  for(let num of arr) {
+    if(map.has(num)) {
+      map.set(num,map.get(num) + 1);
+    }else {
+      map.set(num,1);
+    }
+  }
+
+  let maxKey = null;
+  let maxCount = 0;
+  for(let [num, count] of map) {
+    if(count > maxCount) {
+      maxKey = num;
+      maxCount = count;
+    }
+  }
+
+  return {maxKey, maxCount};
+}
+
+console.log(calculateCount(arr));
+```

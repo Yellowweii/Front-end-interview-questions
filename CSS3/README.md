@@ -129,7 +129,10 @@ text-overflow: ellipsis; /_ 溢出显示省略号 _/<br>
 }
 .child {
   position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   margin: auto; /* 自动填充剩余空间，居中 */
 }
 ```
@@ -165,6 +168,11 @@ will-change 属性告诉浏览器：某个属性即将发生变化，浏览器�
 
 当两个块级元素垂直相邻时（上下排列），它们的垂直外边距不会简单相加，而是会发生折叠，最终表现为：最终外边距 = 两个外边距中的较大值，这种现象称之为外边距折叠。
 外边距折叠是 CSS 的设计行为，避免垂直 margin 累加导致间距过大，可以保持整洁、简洁的视觉效果。
+
 1. 给父元素添加 padding 或 border
 2. 给父元素设置 overflow
-3. 给父元素设置 display: flex或者 display: grid
+3. 给父元素设置 display: flex 或者 display: grid
+
+#### 什么是 BFC？有什么作用？
+
+BFC (Block Formatting Context) = 块级格式化上下文，它是 CSS 布局中的一个独立渲染区域，在这个区域里，元素的排版和外部互不影响；作用是可以避免外边距折叠。
