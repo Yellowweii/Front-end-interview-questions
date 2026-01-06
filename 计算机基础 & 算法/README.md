@@ -263,3 +263,36 @@ console.log(calculateCount(arr));
 
 强缓存是浏览器直接使用本地缓存，不向服务器发起任何请求，只有当缓存过期后，才会去请求服务器；<br>
 协商缓存则是浏览器先向服务器发送请求，验证本地缓存是否有效，服务器决定是否返回新资源；
+
+#### 请你完成下面的算法题
+
+<img width="686" height="688" alt="image" src="https://github.com/user-attachments/assets/60ca6e22-4ee6-4fd9-8b02-063794502e1e" /> 
+
+```javascript
+const intToRoman = (num) => {
+    const map = new Map([
+        [1000, 'M'],
+        [900, 'CM'],
+        [500, 'D'],
+        [400, 'CD'],
+        [100, 'C'],
+        [90, 'XC'],
+        [50, 'L'],
+        [40, 'XL'],
+        [10, 'X'],
+        [9, 'IX'],
+        [5, 'V'],
+        [4, 'IV'],
+        [1, 'I']
+    ]);
+
+    let result = '';
+    for (let [value, symbol] of map) {
+        while (num >= value) {
+            result += map.get(value);
+            num -= value;
+        }
+    }
+
+    return result;
+}
