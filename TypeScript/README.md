@@ -59,3 +59,28 @@ interface User {
 type User2 = { name: string };
 // type User2 = { age: number } // ❌ 会报错
 ```
+
+#### Ts如何在众多类型中排除undefined和null类型？
+
+1、使用 NonNullable 工具类型
+```typescript
+// 原始类型：包含 string、number、null、undefined
+type OriginalType = string | number | null | undefined;
+
+// 排除 null/undefined
+type NonNullType = NonNullable<OriginalType>; 
+// 结果：string | number
+
+// 实际变量使用
+const value: NonNullType = "hello"; // ✅ 合法
+// const value2: NonNullType = null; // ❌ 报错：不能将类型“null”分配给类型“string | number”
+```
+
+2、使用类型排除（Exclude 工具类型）
+```typescript
+type OriginalType = string | boolean | null | undefined;
+
+// 1. 同时排除 null 和 undefined
+type ExcludeNullUndefined = Exclude<OriginalType, null | undefined>;
+// 结果：string | boolean
+```
