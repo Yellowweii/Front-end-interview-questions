@@ -224,7 +224,7 @@ JavaScript 的垃圾回收机制用于自动管理内存，即自动回收不再
 #### window.onload 和 document.onDOMContentLoaded 有什么区别？
 
 ```javascript
-//当页面所有资源加载完成，则触发（涉及到所有资源，所以触发时机较晚）。
+//当页面所有资源加载完成，则触发（涉及到所有资源（HTML/CSS/JS/ 图片 / 视频等）加载完成，所以触发时机较晚）。
 window.onload = function () {
   console.log("window loaded");
 };
