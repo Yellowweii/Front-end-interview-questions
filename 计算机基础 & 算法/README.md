@@ -296,3 +296,42 @@ const intToRoman = (num) => {
 
     return result;
 }
+```
+
+#### 请你依据数组构建一棵二叉树
+
+```javascript
+const arr = [1, 2, 3, 4, 5, 6];
+
+class TreeNode {
+  constructor(val) {
+    (this.rootVal = val), (this.left = null), (this.right = null);
+  }
+}
+
+const buildBinaryTree = (arr) => {
+  if (arr.length === 0) return null;
+
+  const binaryTree = new TreeNode(arr[0]);
+  const queue = [binaryTree];
+  let i = 0;
+
+  while (i < arr.length) {
+    const node = queue.shift();
+
+    if (i < arr.length - 1) {
+      node.left = new TreeNode(arr[++i]);
+      queue.push(node.left);
+    }
+
+    if (i < arr.length - 1) {
+      node.right = new TreeNode(arr[++i]);
+      queue.push(node.right);
+    }
+  }
+
+  return binaryTree;
+};
+
+console.log(buildBinaryTree(arr));
+```
