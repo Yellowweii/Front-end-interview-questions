@@ -95,3 +95,7 @@ const ParentComponent = () => {
 
 export default ParentComponent;
 ```
+
+#### React中JSX.Element和React.FC之间的区别？
+
+JSX.Element是一段jsx代码的类型，是函数式组件的返回值的类型；React.FC是函数式组件的类型。
