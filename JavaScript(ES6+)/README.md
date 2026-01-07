@@ -504,3 +504,9 @@ class Child extends Parent {
 
 super(name) → 构造函数继承
 extends Parent → 原型链继承
+
+#### document.querySelectAll和document.getElementByClassName有什么区别？
+
+1、document.querySelectAll查询到的是静态的元素节点列表，快照，后续Dom节点的变化不会影响到这个集合；document.getElementByClassName查询到的是动态的元素节点列表，实时引用，Dom变化会自动同步到集合中。<br>
+2、document.querySelectAll查询支持任意合法的 CSS 选择器；document.getElementByClassName只支持传类名。<br>
+3、document.getElementByClassName刚开始只记录查询条件，并不立即执行并生成快照，性能比document.querySelectAll更优。
