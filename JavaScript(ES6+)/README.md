@@ -200,7 +200,7 @@ deepClone(newObj, oldObj);
 console.log(newObj);
 ```
 
-2、使用 JSON.stringfy()和 JSON.parse()：这种方法是最简单的深拷贝方式，通过将对象转换为 JSON 字符串，然后再将其解析回新的对象。<br>
+2、使用 JSON.stringify()和 JSON.parse()：这种方法是最简单的深拷贝方式，通过将对象转换为 JSON 字符串，然后再将其解析回新的对象。<br>
 3、使用第三方库 lodash：\_.cloneDeep() 是一个非常常用且稳定的深拷贝方法，它处理得很全面，支持复杂的对象结构、Date、Map、Set 等
 
 #### mouseenter 和 mouseover 的区别？
