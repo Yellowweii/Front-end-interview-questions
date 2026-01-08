@@ -301,6 +301,31 @@ const intToRoman = (num) => {
 #### 请你依据数组构建一棵二叉树
 
 ```javascript
+// DFS
+const arr = [1, 2, 3, 4, 5, 6, 7];
+
+class TreeNode {
+  constructor(val) {
+    (this.rootVal = val), (this.left = null), (this.right = null);
+  }
+}
+
+const buildBinaryTree = (arr, index = 0) => {
+  if (arr.length === 0) return null;
+  if (index >= arr.length || arr[index] === null) return null;
+
+  const node = new TreeNode(arr[index]);
+
+  node.left = buildBinaryTree(arr, index * 2 + 1);
+  node.right = buildBinaryTree(arr, index * 2 + 2);
+
+  return node;
+};
+
+console.log(buildBinaryTree(arr));
+
+
+// 层次遍历
 const arr = [1, 2, 3, 4, 5, 6];
 
 class TreeNode {
