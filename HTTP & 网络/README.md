@@ -5,7 +5,7 @@ Host  https://target.com  目标服务器的域名<br>
 User-Agent  Chrome  客户端浏览器的信息<br>
 Accept  application/json  客户端可接受的响应类型<br>
 Connection  keep-alive  控制HTTP连接是否保持<br>
-==============================================可能会出现==================================================<br>
+============================可能会出现============================<br>
 Origin  https://example.com  跨域请求会携带<br>
 Authorization  Bearer token  接口需要认证时需要携带<br>
 Cookie  sessionId=abc123  当浏览器存在cookie时会携带<br>
