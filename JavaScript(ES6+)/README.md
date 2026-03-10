@@ -214,12 +214,18 @@ Promise 是处理异步任务的一种工具。<br>
 1、解决了回调函数地域<br>
 2、提升了代码的可读性和可维护性<br>
 
-Promise.resolve(10).then((val) => {console.log(val)}); ———— 创建一个fulfilled状态下的promise<br>
-Promose.reject('error').catch((err) => {console.log(err)}); ———— 创建一个rejected状态下的promise<br>
-Promise.resolve(10).finally(() => {console.log('结束')});  ———— 无论该promise是成功还是失败，都会执行finally后续的操作<br>
-Promise.all([Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)]).then(res => {console.log(res)}); ———— 所有 Promise 都成功才返回成功，有一个失败就直接失败<br>
-Promise.race([new Promise(r => setTimeout(() => r('A'), 1000)), new Promise(r => setTimeout(() => r('B'), 500))]); ———— 哪个promise先完成就返回谁的结果<br>
-Promise.allSettled([Promise.resolve('success'), Promise.reject('error')]).then(res => console.log(res)); ———— 等待所有 Promise 执行完，不管成功失败，才返回结果
+创建一个fulfilled状态下的promise<br>
+Promise.resolve(10).then((val) => {console.log(val)});<br>
+创建一个rejected状态下的promise<br>
+Promose.reject('error').catch((err) => {console.log(err)});<br>
+无论该promise是成功还是失败，都会执行finally后续的操作<br>
+Promise.resolve(10).finally(() => {console.log('结束')});<br>
+所有 Promise 都成功才返回成功，有一个失败就直接失败<br>
+Promise.all([Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)]).then(res => {console.log(res)});<br>
+哪个promise先完成就返回谁的结果<br>
+Promise.race([new Promise(r => setTimeout(() => r('A'), 1000)), new Promise(r => setTimeout(() => r('B'), 500))]);<br>
+等待所有Promise执行完，不管成功失败，才返回结果<br>
+Promise.allSettled([Promise.resolve('success'), Promise.reject('error')]).then(res => console.log(res));
 
 #### 谈一谈 js 的垃圾回收机制
 
