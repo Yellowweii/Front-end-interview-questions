@@ -64,7 +64,7 @@ React.memo() 是 React 提供的一个高阶组件HOC，它接受一个组件作
 import React from 'react';
 
 const MyComponent = (props) => {
-  console.log('组件渲染了'); 
+  console.log('组件渲染了');
   return (
     <div>
       <p>a: {props.a}</p>
@@ -99,3 +99,12 @@ export default ParentComponent;
 #### React中JSX.Element和React.FC之间的区别？
 
 JSX.Element是一段jsx代码的类型，是函数式组件的返回值的类型；React.FC是函数式组件的类型。
+
+#### React将虚拟Dom更新到真实Dom的时机？
+
+在 React 中，虚拟 DOM 更新到真实 DOM 的时机，本质上发生在 commit 阶段。React 的更新流程其实可以分成 两个阶段：Render 阶段、Commit 阶段、只有在 Commit 阶段，React 才会真正操作真实 DOM
+
+#### React渲染列表时，加key和不加key的利弊？
+
+在 React 中，key 的作用核心是：帮助 React 在 diff 过程中识别哪些元素是“同一个”节点。这直接影响 性能、DOM 复用、组件状态是否保留。<br>
+旧：A B C，新：B C D，如果不加key，React会把A → B，B → C，C → D，结果会有3次Dom的更新，如果加了key，React 只需要删除A，新增D，结果只有2次Dom操作，可以复用Dom且保留组件的state，性能更优

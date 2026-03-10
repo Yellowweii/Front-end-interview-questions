@@ -522,3 +522,28 @@ extends Parent → 原型链继承
 1、document.querySelectAll查询到的是静态的元素节点列表，快照，后续Dom节点的变化不会影响到这个集合；document.getElementByClassName查询到的是动态的元素节点列表，实时引用，Dom变化会自动同步到集合中。<br>
 2、document.querySelectAll查询支持任意合法的 CSS 选择器；document.getElementByClassName只支持传类名。<br>
 3、document.getElementByClassName刚开始只记录查询条件，并不立即执行并生成快照，性能比document.querySelectAll更优。
+
+#### ES6有哪些新语法？
+
+1、let、const<br>
+2、箭头函数<br>
+3、模板字符串<br>
+4、数组、对象解构<br>
+5、函数可以有默认参数<br>
+6、展开运算符<br>
+7、class类<br>
+8、export、import模块化的导入导出<br>
+9、Promise管理异步任务<br>
+10、新增Map和Set数据结构<br>
+11、新增数据类型Symbol<br>
+
+#### 如何修改一个对象的构造函数？
+
+```javascript
+function Parent () {}
+function Child () {}
+
+const p = new Parent()
+Object.setPrototypeOf(p, Child.prototype)
+```
+
