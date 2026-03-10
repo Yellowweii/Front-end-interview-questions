@@ -152,7 +152,7 @@ function throttle(fn, delay) {
 
 #### 对原型、原型链的理解
 
-Js中每一个对象都会有自己的proto属性，当查找一个当前对象没有的属性时，会去查找它的proto属性，而它的proto属性和它的构造函数的prototype属性指向的是同一个对象，里面共享一些属性和方法，如果还没找到，就会继续顺着proto属性所指对象的proto属性进行查找，因为它本身是一个对象，而它的proto属性则是和Object.prototype属性指向的是同一个对象，如果还没找到，就继续顺着原型链向上查找，直到找到null为止。
+Js 中每一个对象都会有自己的 proto 属性，当查找一个当前对象没有的属性时，会去查找它的 proto 属性，而它的 proto 属性和它的构造函数的 prototype 属性指向的是同一个对象，里面共享一些属性和方法，如果还没找到，就会继续顺着 proto 属性所指对象的 proto 属性进行查找，因为它本身是一个对象，而它的 proto 属性则是和 Object.prototype 属性指向的是同一个对象，如果还没找到，就继续顺着原型链向上查找，直到找到 null 为止。
 
 #### 如何实现一个对象的浅拷贝和深拷贝？
 
@@ -200,20 +200,32 @@ deepClone(newObj, oldObj);
 console.log(newObj);
 ```
 
-2、使用 JSON.stringfy()和 JSON.parse()：这种方法是最简单的深拷贝方式，通过将对象转换为 JSON 字符串，然后再将其解析回新的对象。<br>
+2、使用 JSON.stringify()和 JSON.parse()：这种方法是最简单的深拷贝方式，通过将对象转换为 JSON 字符串，然后再将其解析回新的对象。<br>
 3、使用第三方库 lodash：\_.cloneDeep() 是一个非常常用且稳定的深拷贝方法，它处理得很全面，支持复杂的对象结构、Date、Map、Set 等
 
 #### mouseenter 和 mouseover 的区别？
 
 mouseenter 不会触事件冒泡，mouseover 会触发事件冒泡。
 
-#### 什么是 Promise？有什么好处？
+#### 什么是 Promise？有什么好处？Promise有哪些Api，它们的作用分别是什么？
 
 Promise 是处理异步任务的一种工具。<br>
 好处：<br>
 1、解决了回调函数地域<br>
 2、提升了代码的可读性和可维护性<br>
-3、Promise.all()可以同时管理多个异步任务，当有一个任务失败时，整个 Promise.all() 会失败，并返回该失败任务的错误消息。
+
+创建一个fulfilled状态下的promise<br>
+Promise.resolve(10).then((val) => {console.log(val)});<br>
+创建一个rejected状态下的promise<br>
+Promose.reject('error').catch((err) => {console.log(err)});<br>
+无论该promise是成功还是失败，都会执行finally后续的操作<br>
+Promise.resolve(10).finally(() => {console.log('结束')});<br>
+所有 Promise 都成功才返回成功，有一个失败就直接失败<br>
+Promise.all([Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)]).then(res => {console.log(res)});<br>
+哪个promise先完成就返回谁的结果<br>
+Promise.race([new Promise(r => setTimeout(() => r('A'), 1000)), new Promise(r => setTimeout(() => r('B'), 500))]);<br>
+等待所有Promise执行完，不管成功失败，才返回结果<br>
+Promise.allSettled([Promise.resolve('success'), Promise.reject('error')]).then(res => console.log(res));
 
 #### 谈一谈 js 的垃圾回收机制
 
@@ -224,7 +236,7 @@ JavaScript 的垃圾回收机制用于自动管理内存，即自动回收不再
 #### window.onload 和 document.onDOMContentLoaded 有什么区别？
 
 ```javascript
-//当页面所有资源加载完成，则触发（涉及到所有资源，所以触发时机较晚）。
+//当页面所有资源加载完成，则触发（涉及到所有资源（HTML/CSS/JS/ 图片 / 视频等）加载完成，所以触发时机较晚）。
 window.onload = function () {
   console.log("window loaded");
 };
@@ -300,37 +312,36 @@ console.log("7");
 
 ```javascript
 async function async1() {
-  console.log ('async1 start');
-  await async2 ()
-  console.log('async1 end');
+  console.log("async1 start");
+  await async2();
+  console.log("async1 end");
 }
 
 async function async2() {
-  console.log('async2');
+  console.log("async2");
 }
 
-console.log('script start');
+console.log("script start");
 
 setTimeout(function () {
-  console.log('setTimeout0')
+  console.log("setTimeout0");
 }, 0);
 
 setTimeout(function () {
-  console.log('setTimeout3')
+  console.log("setTimeout3");
 }, 3);
 
 async1();
 
 new Promise(function (resolve) {
-  console.log('promise1');
+  console.log("promise1");
   resolve();
-  console.log('promise2');
-})
-.then(function () {
-  console.log('promise3');
+  console.log("promise2");
+}).then(function () {
+  console.log("promise3");
 });
 
-console.log('script end');
+console.log("script end");
 ```
 
 script start -> async1 start -> async2 -> promise1 -> promise2 -> script end -> async1 end -> promise3 -> setTimeout0 -> setTimeout3
@@ -366,33 +377,35 @@ function myPromiseAll(promises) {
 
 ```javascript
 for (let i = 0; i < 2; i++) {
-   setTimeout(function () {
-      console.log(i);
-   }, 0);
+  setTimeout(function () {
+    console.log(i);
+  }, 0);
 }
 ```
+
 0 1
 
 ```javascript
 for (var i = 0; i < 2; i++) {
-   setTimeout(function () {
-      console.log(i);
-   }, 0);
+  setTimeout(function () {
+    console.log(i);
+  }, 0);
 }
 ```
+
 2 2
 
 #### 对于下⾯的代码，等式成⽴的是：
 
 ```javascript
-const a = 1
-const b = 1
-const c = null
-const d = null
-const e = [ ]
-const f = [ ]
-const g = { }
-const h = { }
+const a = 1;
+const b = 1;
+const c = null;
+const d = null;
+const e = [];
+const f = [];
+const g = {};
+const h = {};
 ```
 
 a === b; c === d; e !== f; g !== h;
@@ -401,16 +414,16 @@ a === b; c === d; e !== f; g !== h;
 
 ```javascript
 if ([]) {
-  console.log('A') // A
+  console.log("A"); // A
 }
 if ({}) {
-  console.log('B') // B
+  console.log("B"); // B
 }
-if ('') {
-  console.log('C') // C
+if ("") {
+  console.log("C"); // C
 }
 if (null) {
-  console.log('D') // D
+  console.log("D"); // D
 }
 ```
 
@@ -418,6 +431,119 @@ A B
 
 #### 为什么 (0.1 + 0.2) === 0.3 返回 false？
 
-因为JavaScript使用64位双精度浮点数表示所有数字，大部分十进制小数无法被精确转换成二进制小数，所以会存在误差。
+因为 JavaScript 使用 64 位双精度浮点数表示所有数字，大部分十进制小数无法被精确转换成二进制小数，所以会存在误差。
 
+#### parseInt()和 Number()的区别
+
+parseInt()将字符串按指定进制解析成整数，遇到非数字字符就停止解析；Number()将整个值（字符串、布尔、对象等）转换成数字（整数或浮点数），必须整个字符串能完全转换，否则返回 NaN
+
+#### 什么是构造函数继承，什么是原型链继承，什么是组合继承？
+
+构造函数继承指的是在子类构造函数内部，调用父类构造函数，把父类的实例属性“复制”到子类实例上。典型做法：Parent.call(this, ...)，作用：继承父类的 实例属性，每个子类实例都有自己独立的属性。不能继承父类原型上的方法（方法必须用原型链继承才能拿到）。
+
+```javascript
+function Parent(name) {
+  this.name = name;
+  this.hobbies = ["coding", "reading"];
+}
+
+function Child(name, age) {
+  Parent.call(this, name); // 构造函数继承
+  this.age = age;
+}
+
+const c1 = new Child("Tom", 18);
+const c2 = new Child("Jerry", 20);
+
+c1.hobbies.push("gaming");
+
+console.log(c1.hobbies); // ["coding","reading","gaming"]
+console.log(c2.hobbies); // ["coding","reading"]   <-- 独立
+```
+
+原型链继承——通过 Child.prototype = Object.create(Parent.prototype)，让子类原型链指向父类原型。因为替换了 Child.prototype，要把 Child.prototype.constructor 改回 Child
+
+```javascript
+function Parent(name) {
+  this.name = name;
+}
+Parent.prototype.sayHello = function () {
+  console.log(`Hello, I am ${this.name}`);
+};
+
+function Child(name, age) {
+  // 继承父类的属性
+  Parent.call(this, name);
+  this.age = age;
+}
+
+// 关键：让子类原型指向父类原型的一个实例，从而继承方法
+Child.prototype = Object.create(Parent.prototype);
+// 修正 constructor 指向
+Child.prototype.constructor = Child;
+
+Child.prototype.sayAge = function () {
+  console.log(`I am ${this.age} years old`);
+};
+
+const c = new Child("Tom", 18);
+c.sayHello(); // Hello, I am Tom  <-- 来自 Parent.prototype
+c.sayAge(); // I am 18 years old <-- 来自 Child.prototype
+```
+
+组合继承 = 构造函数继承 + 原型链继承，ES6 class 的组合继承其实就是语法糖
+
+```javascript
+class Parent {
+  constructor(name) {
+    this.name = name;
+  }
+  sayHello() {
+    console.log(`Hello, I am ${this.name}`);
+  }
+}
+
+class Child extends Parent {
+  constructor(name, age) {
+    super(name); // 调用 Parent 构造函数，继承实例属性
+    this.age = age;
+  }
+  sayAge() {
+    console.log(`I am ${this.age}`);
+  }
+}
+```
+
+super(name) → 构造函数继承
+extends Parent → 原型链继承
+
+#### document.querySelectAll和document.getElementByClassName有什么区别？
+
+1、document.querySelectAll查询到的是静态的元素节点列表，快照，后续Dom节点的变化不会影响到这个集合；document.getElementByClassName查询到的是动态的元素节点列表，实时引用，Dom变化会自动同步到集合中。<br>
+2、document.querySelectAll查询支持任意合法的 CSS 选择器；document.getElementByClassName只支持传类名。<br>
+3、document.getElementByClassName刚开始只记录查询条件，并不立即执行并生成快照，性能比document.querySelectAll更优。
+
+#### ES6有哪些新语法？
+
+1、let、const<br>
+2、箭头函数<br>
+3、模板字符串<br>
+4、数组、对象解构<br>
+5、函数可以有默认参数<br>
+6、展开运算符<br>
+7、class类<br>
+8、export、import模块化的导入导出<br>
+9、Promise管理异步任务<br>
+10、新增Map和Set数据结构<br>
+11、新增数据类型Symbol<br>
+
+#### 如何修改一个对象的构造函数？
+
+```javascript
+function Parent () {}
+function Child () {}
+
+const p = new Parent()
+Object.setPrototypeOf(p, Child.prototype)
+```
 

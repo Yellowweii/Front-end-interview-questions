@@ -229,3 +229,134 @@ const loadLimitImage = async (
   }
 };
 ```
+
+#### 输出数组中出现次数最多的元素，以及它的次数
+
+```javascript
+const arr = [1,2,3,4,5,6,7,2,2,2,2,4];
+const calculateCount = (arr) => {
+  const map = new Map();
+  for(let num of arr) {
+    if(map.has(num)) {
+      map.set(num,map.get(num) + 1);
+    }else {
+      map.set(num,1);
+    }
+  }
+
+  let maxKey = null;
+  let maxCount = 0;
+  for(let [num, count] of map) {
+    if(count > maxCount) {
+      maxKey = num;
+      maxCount = count;
+    }
+  }
+
+  return {maxKey, maxCount};
+}
+
+console.log(calculateCount(arr));
+```
+
+#### 谈一谈什么是强缓存和协商缓存？
+
+强缓存是浏览器直接使用本地缓存，不向服务器发起任何请求，只有当缓存过期后，才会去请求服务器；<br>
+协商缓存则是浏览器先向服务器发送请求，验证本地缓存是否有效，服务器决定是否返回新资源；
+
+#### 请你完成下面的算法题
+
+<img width="686" height="688" alt="image" src="https://github.com/user-attachments/assets/60ca6e22-4ee6-4fd9-8b02-063794502e1e" /> 
+
+```javascript
+const intToRoman = (num) => {
+    const map = new Map([
+        [1000, 'M'],
+        [900, 'CM'],
+        [500, 'D'],
+        [400, 'CD'],
+        [100, 'C'],
+        [90, 'XC'],
+        [50, 'L'],
+        [40, 'XL'],
+        [10, 'X'],
+        [9, 'IX'],
+        [5, 'V'],
+        [4, 'IV'],
+        [1, 'I']
+    ]);
+
+    let result = '';
+    for (let [value, symbol] of map) {
+        while (num >= value) {
+            result += map.get(value);
+            num -= value;
+        }
+    }
+
+    return result;
+}
+```
+
+#### 请你依据数组构建一棵二叉树
+
+```javascript
+// DFS
+const arr = [1, 2, 3, 4, 5, 6, 7];
+
+class TreeNode {
+  constructor(val) {
+    (this.rootVal = val), (this.left = null), (this.right = null);
+  }
+}
+
+const buildBinaryTree = (arr, index = 0) => {
+  if (arr.length === 0) return null;
+  if (index >= arr.length || arr[index] === null) return null;
+
+  const node = new TreeNode(arr[index]);
+
+  node.left = buildBinaryTree(arr, index * 2 + 1);
+  node.right = buildBinaryTree(arr, index * 2 + 2);
+
+  return node;
+};
+
+console.log(buildBinaryTree(arr));
+
+
+// 层次遍历
+const arr = [1, 2, 3, 4, 5, 6];
+
+class TreeNode {
+  constructor(val) {
+    (this.rootVal = val), (this.left = null), (this.right = null);
+  }
+}
+
+const buildBinaryTree = (arr) => {
+  if (arr.length === 0) return null;
+
+  const binaryTree = new TreeNode(arr[0]);
+  const queue = [binaryTree];
+  let i = 0;
+
+  while (i < arr.length) {
+    const node = queue.shift();
+
+    if (i < arr.length - 1) {
+      node.left = new TreeNode(arr[++i]);
+      queue.push(node.left);
+    }
+
+    if (i < arr.length - 1) {
+      node.right = new TreeNode(arr[++i]);
+      queue.push(node.right);
+    }
+  }
+
+  return binaryTree;
+};
+
+console.log(buildBinaryTree(arr));
+```
