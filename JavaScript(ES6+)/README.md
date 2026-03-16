@@ -361,7 +361,7 @@ function myPromiseAll(promises) {
     promises.forEach((p, i) => {
       Promise.resolve(p)
         .then((value) => {
-          resluts[i] = value;
+          results[i] = value;
           completedCount++;
           if (completedCount === total) {
             resolve(results);
@@ -521,7 +521,7 @@ extends Parent → 原型链继承
 
 1、document.querySelectAll查询到的是静态的元素节点列表，快照，后续Dom节点的变化不会影响到这个集合；document.getElementByClassName查询到的是动态的元素节点列表，实时引用，Dom变化会自动同步到集合中。<br>
 2、document.querySelectAll查询支持任意合法的 CSS 选择器；document.getElementByClassName只支持传类名。<br>
-3、document.getElementByClassName刚开始只记录查询条件，并不立即执行并生成快照，性能比document.querySelectAll更优。
+3、document.getElementByClassName刚开始只记录查询条件，并不立即执行并生成元素节点列表，性能比document.querySelectAll更优。
 
 #### ES6有哪些新语法？
 
