@@ -1,3 +1,7 @@
+#### 请你谈一谈对React Fiber架构的理解
+
+React Fiber 是 React 16 引入的一种新的渲染架构，在React16之前，在同一个上下文中React会收集所有setState放入更新队列中，随后进入render阶段，会基于旧的Virtual Dom树构建出一棵新的Virtual Dom树，并通过diff算法实行函数递归，标记出新旧两棵虚拟Dom树的不同之处，并在commit阶段统一更新到真实的Dom树上，这个过程是同步且不可中断的，如果组件树较大，会长时间占用主线程，导致用户的点击、输入等高优先级任务无法及时响应，从而出现卡顿。而在React16之后，引入了React Fiber架构，它将原本同步不可中断的递归更新，拆分成一个个可中断的任务单元（Fiber），通过链表结构（child、sibling、return）来遍历整棵树。在 render 阶段，React 会逐步构建 Fiber 树并进行 diff，这个过程是可以被打断和调度的；而在 commit 阶段，才会一次性更新 DOM，从而保证 UI 一致性。
+
 #### 请指出以下代码可能会出现什么问题，以及如何修复。
 
 ```javascript
