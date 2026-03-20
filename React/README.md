@@ -112,3 +112,43 @@ JSX.Element是一段jsx代码的类型，是函数式组件的返回值的类型
 
 在 React 中，key 的作用核心是：帮助 React 在 diff 过程中识别哪些元素是“同一个”节点。这直接影响 性能、DOM 复用、组件状态是否保留。<br>
 旧：A B C，新：B C D，如果不加key，React会把A → B，B → C，C → D，结果会有3次Dom的更新，如果加了key，React 只需要删除A，新增D，结果只有2次Dom操作，可以复用Dom且保留组件的state，性能更优
+
+#### 有哪些办法可以拿到React State的最新状态？
+
+1、 setState 的函数式更新
+2、useEffect 依赖数组
+```javascript
+const [count, setCount] = useState(0)
+
+useEffect(() => {
+  console.log(count) // 每次 count 变化都能拿到最新值
+}, [count])
+```
+3、useReducer
+```javascript
+// 第一步：定义 reducer 函数
+// state = 当前状态，action = 你发出的指令
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment': return state + 1
+    case 'decrement': return state - 1
+    case 'reset':     return 0
+  }
+}
+
+// 第二步：使用
+const [count, dispatch] = useReducer(reducer, 0)
+//                                            ↑ 初始值
+
+// 第三步：通过 dispatch 发指令，而不是直接 setState
+<button onClick={() => dispatch({ type: 'increment' })}>+</button>
+<button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+<button onClick={() => dispatch({ type: 'reset' })}>重置</button>
+```
+
+
+
+
+
+
+
