@@ -115,7 +115,7 @@ JSX.Element是一段jsx代码的类型，是函数式组件的返回值的类型
 
 #### 有哪些办法可以拿到React State的最新状态？
 
-1、 setState 的函数式更新
+1、 setState 的函数式更新<br>
 2、useEffect 依赖数组
 ```javascript
 const [count, setCount] = useState(0)
