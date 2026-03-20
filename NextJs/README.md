@@ -12,7 +12,7 @@ Next.js 的 next/image 组件在服务端做裁图片压缩、剪、格式转换
 #### 谈一谈NextJs的Link组件。
 
 1.它支持国际化路由显示<br>
-2.它可以使当前视口内所有可见链接提前预加载，预加载内容是 对应页面的 JS bundle，JS Bundle 是指将页面相关的 JavaScript 代码打包成一个文件或一组文件。<br>
+2.它可以使当前视口内所有可见链接提前预加载，预加载内容是 对应页面的 JS bundle或者RSC payload，JS Bundle 是指将页面相关的 JavaScript 代码打包成一个文件或一组文件。<br>
 
 #### NextJs中App Router和Pages Router的区别？
 
