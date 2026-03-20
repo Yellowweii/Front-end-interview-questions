@@ -1,3 +1,7 @@
+#### 请你谈一谈对React Fiber架构的理解
+
+React Fiber 是 React 16 引入的一种新的渲染架构，在React16之前，在同一个上下文中React会收集所有setState放入更新队列中，随后进入render阶段，会基于旧的Virtual Dom树构建出一棵新的Virtual Dom树，并通过diff算法实行函数递归，标记出新旧两棵虚拟Dom树的不同之处，并在commit阶段统一更新到真实的Dom树上，这个过程是同步且不可中断的，如果组件树较大，会长时间占用主线程，导致用户的点击、输入等高优先级任务无法及时响应，从而出现卡顿。而在React16之后，引入了React Fiber架构，它将原本同步不可中断的递归更新，拆分成一个个可中断的任务单元（Fiber）。在 render 阶段，React 会逐步构建 Fiber 树并进行 diff，这个过程是可以被打断和调度的；而在 commit 阶段，才会一次性更新 DOM，从而保证 UI 一致性。
+
 #### 请指出以下代码可能会出现什么问题，以及如何修复。
 
 ```javascript
@@ -14,7 +18,7 @@ function Counter() {
 }
 ```
 
-这段 React 函数组件代码存在一个经典的闭包陷阱问题，会导致 count 永远停留在初始值 0，组件每秒都只渲染 1
+这段 React 函数组件代码存在一个经典的闭包陷阱问题，会导致 count 永远停留在初始值 0，组件每秒都只渲染 1<br>
 使用函数式更新 setCount(prev => prev + 1)可以修复这个问题
 
 #### 组件之间的状态同步
@@ -108,3 +112,43 @@ JSX.Element是一段jsx代码的类型，是函数式组件的返回值的类型
 
 在 React 中，key 的作用核心是：帮助 React 在 diff 过程中识别哪些元素是“同一个”节点。这直接影响 性能、DOM 复用、组件状态是否保留。<br>
 旧：A B C，新：B C D，如果不加key，React会把A → B，B → C，C → D，结果会有3次Dom的更新，如果加了key，React 只需要删除A，新增D，结果只有2次Dom操作，可以复用Dom且保留组件的state，性能更优
+
+#### 有哪些办法可以拿到React State的最新状态？
+
+1、 setState 的函数式更新<br>
+2、useEffect 依赖数组
+```javascript
+const [count, setCount] = useState(0)
+
+useEffect(() => {
+  console.log(count) // 每次 count 变化都能拿到最新值
+}, [count])
+```
+3、useReducer
+```javascript
+// 第一步：定义 reducer 函数
+// state = 当前状态，action = 你发出的指令
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment': return state + 1
+    case 'decrement': return state - 1
+    case 'reset':     return 0
+  }
+}
+
+// 第二步：使用
+const [count, dispatch] = useReducer(reducer, 0)
+//                                            ↑ 初始值
+
+// 第三步：通过 dispatch 发指令，而不是直接 setState
+<button onClick={() => dispatch({ type: 'increment' })}>+</button>
+<button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+<button onClick={() => dispatch({ type: 'reset' })}>重置</button>
+```
+
+
+
+
+
+
+
