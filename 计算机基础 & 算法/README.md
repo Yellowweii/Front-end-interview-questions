@@ -313,3 +313,53 @@ const buildBinaryTree = (arr) => {
 
 console.log(buildBinaryTree(arr));
 ```
+
+#### 实现fetchWithCache(url, fetcher, ttl)
+要求：<br>
+- 相同url并发请求去重<br>
+- 成功缓存ttl毫秒<br>
+- 失败不缓存<br>
+
+```javascript
+const promiseMap = new Map();
+const dataMap = new Map();
+
+const fetchWithCache = (url, fetcher, ttl) => {
+  if (promiseMap.get(url)) {
+    return promiseMap.get(url);
+  }
+
+  if (dataMap.get(url) && Date.now() - dataMap.get(url).timeStamp < ttl) {
+    return Promise.resolve(dataMap.get(url).data);
+  }
+
+  const promise = (async () => {
+    try {
+      const res = await fetcher();
+      dataMap.set(url, {
+        data: res,
+        timeStamp: Date.now(),
+      });
+      promiseMap.delete(url);
+      return res;
+    } catch (err) {
+      console.log(err);
+      promiseMap.delete(url);
+      throw new Error(err);
+    }
+  })();
+
+  promiseMap.set(url, promise);
+
+  return promise;
+};
+
+(async () => {
+  const result = await Promise.all([
+    fetchWithCache("https://example.com", () => Promise.resolve(111), 5000),
+    fetchWithCache("https://example.com", () => Promise.resolve(222), 5000),
+  ]);
+
+  console.log(result);
+})();
+```
