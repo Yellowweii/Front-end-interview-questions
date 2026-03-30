@@ -60,6 +60,65 @@ text-overflow: ellipsis; /_ 溢出显示省略号 _/<br>
 
 #### 如何实现一个元素的水平垂直居中？
 
+```css
+.father {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+```css
+.father {
+  position: relative;
+}
+
+.son {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+```
+
+```css
+.father {
+  display: grid;
+  place-items: center;
+}
+```
+
+```css
+.father {
+  display: flex;
+}
+
+.son {
+  margin: auto;
+}
+```
+
+```css
+.father {
+  display: grid;
+}
+
+.son {
+  margin: auto;
+}
+```
+
+```css
+.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; /* 自动填充剩余空间，居中 */
 1、<br>
 {<br>
 position: absolute;<br>
@@ -73,6 +132,7 @@ display: flex;<br>
 justify-content: center;<br>
 align-items: center;<br>
 }
+```
 
 #### flex：1 的含义？
 
