@@ -148,9 +148,9 @@ const [count, dispatch] = useReducer(reducer, 0)
 
 #### 自定义hook和普通Function的区别？
 
-1、自定义hook只能以use开头命名，普通函数没有这个限制
-2、自定义hook，可以在函数体内使用React hooks管理各自的状态，普通函数不行
-3、自定义hook不能在条件判断和循环中使用，普通函数可以
+1、自定义hook只能以use开头命名，普通函数没有这个限制<br>
+2、自定义hook，可以在函数体内使用React hooks管理各自的状态，普通函数不行<br>
+3、自定义hook不能在条件判断和循环中使用，普通函数可以<br>
 
 
 
