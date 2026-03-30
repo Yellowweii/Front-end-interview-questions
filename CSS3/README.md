@@ -119,19 +119,6 @@ text-overflow: ellipsis; /_ 溢出显示省略号 _/<br>
   left: 0;
   right: 0;
   margin: auto; /* 自动填充剩余空间，居中 */
-1、<br>
-{<br>
-position: absolute;<br>
-top: 50%;<br>
-left: 50%;<br>
-transform: translate(-50%, -50%);<br>
-}<br>
-2、<br>
-{<br>
-display: flex;<br>
-justify-content: center;<br>
-align-items: center;<br>
-}
 ```
 
 #### flex：1 的含义？
