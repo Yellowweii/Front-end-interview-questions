@@ -550,3 +550,39 @@ const p = new Parent()
 Object.setPrototypeOf(p, Child.prototype)
 ```
 
+#### apply、call和bind有什么区别？
+
+三者都用于指定函数的 this，区别在于调用时机和传参方式。<br>
+call：立即执行，参数逐个传入
+
+```javascript
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const user = { name: 'Alice' };
+greet.call(user, 'Hello', '!'); // Hello, Alice!
+```
+
+apply：立即执行，参数以数组传入
+
+```javascript
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+greet.apply(user, ['Hi', '~']); // Hi, Alice~
+```
+
+bind：不立即执行，返回一个绑定了 this 的新函数
+
+```javascript
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+const greetAlice = greet.bind(user, 'Hey');
+greetAlice('?'); // Hey, Alice?  ← 之后再调用
+```
+
+
+
+
