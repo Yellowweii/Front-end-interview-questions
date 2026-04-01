@@ -60,6 +60,42 @@ type User2 = { name: string };
 // type User2 = { age: number } // ❌ 会报错
 ```
 
+#### Ts如何给一个interface对象添加属性？
+
+1、使用 extends 继承
+
+```typescript
+interface A {
+  name: string;
+}
+
+interface B extends A {
+  age: number;
+}
+```
+
+2、使用交叉类型（&）
+```typescript
+interface A {
+  name: string;
+}
+
+type B = A & {
+  age: number;
+};
+```
+
+3、使用声明合并
+```typescript
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+```
+
 #### Ts如何在众多类型中排除undefined和null类型？
 
 1、使用 NonNullable 工具类型
