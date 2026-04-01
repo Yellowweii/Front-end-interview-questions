@@ -573,7 +573,7 @@ function greet(greeting, punctuation) {
 greet.apply(user, ['Hi', '~']); // Hi, Alice~
 ```
 
-bind：不立即执行，返回一个绑定了 this 的新函数
+bind：不立即执行，返回一个绑定了 this 的新函数，参数逐个传入
 
 ```javascript
 function greet(greeting, punctuation) {
