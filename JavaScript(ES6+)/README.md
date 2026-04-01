@@ -583,6 +583,35 @@ const greetAlice = greet.bind(user, 'Hey');
 greetAlice('?'); // Hey, Alice?  ← 之后再调用
 ```
 
+#### 下面这段代码存在什么问题？
 
+```javascript
+class EventCount {
+  _el;
+  _keyUpCounter = 0;
+  _keyDownCounter = 0;
+
+  constructor(el) {
+    this._el = el;
+    this._el.addEventListener("keyup", this._addKeyUpCounter.bind(this));
+    this._el.addEventListener("keydown", this._addKeyDownCounter);
+  }
+
+  _addKeyUpCounter() {
+    this._keyUpCounter += 1;
+  }
+
+  _addKeyDownCounter = () => {
+    this._keyDownCounter += 1;
+  };
+
+  remove() {
+    this._el.removeEventListener("keyup", this._addKeyUpCounter.bind(this));
+    this._el.removeEventListener("keydown", this._addKeyDownCounter);
+  }
+}
+```
+
+每次调用bind会产生一个新的函数实例，两个函数引用不同，removeEventListener 无法移除监听器，造成内存泄漏。
 
 
