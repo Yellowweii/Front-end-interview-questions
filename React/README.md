@@ -157,4 +157,9 @@ const [count, dispatch] = useReducer(reducer, 0)
 React 内部用一个链表来存储每个组件的 Hook 状态。每次渲染时，React 按照 Hook 的调用顺序，依次将状态与链表节点一一对应。
 在条件判断和循环中使用，hooks的数量会变化，导致后续所有 Hook 错位读取，状态完全乱掉。
 
+#### 如果一个React组件在渲染阶段发生错误，导致页面报错，怎么解决？
 
+如果一个 React 组件在渲染阶段发生错误，首先应该从根本原因入手排查问题，而不是只做兜底处理：<br>
+1、定位错误来源：例如是否存在数据未加载就参与渲染、对非数组类型调用 map 等问题，从源头修复逻辑错误；<br>
+2、检查异步逻辑的错误处理：确保 Promise、async/await 等异步操作有完善的 .catch 或 try-catch 处理，避免异常传播到渲染阶段；<br>
+3、使用 ErrorBoundary 做兜底：通过 getDerivedStateFromError 和 componentDidCatch 捕获渲染阶段错误，并渲染降级 UI，防止整个应用崩溃，实现局部容错。<br>
