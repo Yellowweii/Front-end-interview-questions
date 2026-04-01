@@ -152,8 +152,9 @@ const [count, dispatch] = useReducer(reducer, 0)
 2、自定义hook，可以在函数体内使用React hooks管理各自的状态，普通函数不行<br>
 3、自定义hook不能在条件判断和循环中使用，普通函数可以<br>
 
+#### 为什么React hooks不能在条件判断和循环中使用？
 
-
-
+React 内部用一个链表来存储每个组件的 Hook 状态。每次渲染时，React 按照 Hook 的调用顺序，依次将状态与链表节点一一对应。
+在条件判断和循环中使用，hooks的数量会变化，导致后续所有 Hook 错位读取，状态完全乱掉。
 
 
